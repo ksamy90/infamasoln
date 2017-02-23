@@ -1,0 +1,43 @@
+2.	Design a simple API for a URL shortener. Authentication not necessary
+_________________________________________________________________________________
+<html>
+<head>
+</head>
+<script type="text/javascript">
+function shortenUrl() 
+{
+   var longUrl=document.getElementById("longurl").value;
+    var request = urlshortener.url.insert({
+    'checkUrl': {
+      'longUrl': longUrl
+	}
+    });
+    request.execute(function(response) 
+	{
+		
+		if(response.id != null)
+		{
+			str ="<b>Long URL:</b>"+longUrl+"<br>";
+			str +="<b>Short URL:</b> <a href='"+response.id+"'>"+response.id+"</a><br>";
+			document.getElementById("output").innerHTML = str;
+		}
+		else
+		{
+			console.log("error creating url");
+		}
+	
+    });
+ }
+
+</script>
+
+<body>
+
+<input type="text" id="longurl" name="url" value="the actual url" /> 
+<input type="button" value="Create Short" onclick="shortenUrl();" />
+
+<div id="output"></div>
+
+
+</body>
+</html>
